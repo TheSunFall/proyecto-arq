@@ -5,6 +5,7 @@ export default function Navbar() {
             <div className="h-full self-center">
                 <a className="bg-pink-950 hover:bg-pink-800 active:font-bold active:bg-pink-600 p-4 pr-6 pl-6 h-full" href="/">Inicio</a>
                 <a className="bg-pink-950 hover:bg-pink-800 active:font-bold active:bg-pink-600 p-4 pr-6 pl-6 h-full" href="/controles">Controles</a>
+                <a className="bg-pink-950 hover:bg-pink-800 active:font-bold active:bg-pink-600 p-4 pr-6 pl-6 h-full" href="/historial">Historial</a>
             </div>
         </nav>
     )
