@@ -17,18 +17,20 @@ const SHEET_NAME = "Historial";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
+    const rows = await getLastRows();
+    const start = (rows[0] - 6) ? rows[0] - 6 : 2;
+    const LAST_6_RANGE = `Historial!A${start}:E${rows[0]}`;
     try {
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
-        range: "Historial!A:E",
+        range: LAST_6_RANGE,
       });
 
       let data = response.data.values || [];
 
       // Obtener solo los últimos 6 registros (suponiendo que la primera fila son encabezados)
-      const headers = data[0];
-      const last10Values = data.slice(-6); // Extrae las últimas 6 filas
-      res.status(200).json({ headers, last10Values });
+      const last6values = data; // Extrae las últimas 6 filas
+      res.status(200).json({ last6values });
     } catch (error) {
       console.error("Error guardando los datos:", error);
       res.status(500).json({ error: "Error interno del servidor" });
@@ -45,7 +47,7 @@ export default async function handler(req, res) {
         range: SHEET_NAME,
         valueInputOption: "RAW",
         requestBody: {
-          values: [[lluvia, humedad, stringEstado, nivelAgua, new Date().toLocaleString()]],
+          values: [[lluvia, humedad, stringEstado, nivelAgua, new Date().toISOString()]],
         },
       });
 
@@ -59,3 +61,11 @@ export default async function handler(req, res) {
     res.status(405).json({ error: "Método no permitido" });
   }
 }
+
+async function getLastRows() {
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: "Historial!H2",
+  });
+  return response.data.values[0];
+};

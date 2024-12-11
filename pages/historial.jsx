@@ -10,7 +10,7 @@ export default function Dashboard() {
     // Llamar a la API para obtener datos
     const fetchData = async () => {
       const response = await fetch("/api/datos");
-      const datos = (await response.json())["last10Values"];
+      const datos = (await response.json())["last6values"];
       console.log(datos);
       setDatos(datos);
     };
@@ -55,7 +55,7 @@ export default function Dashboard() {
   return (
     <Layout>
       <div className="text-center mx-auto w-10/12">
-        <h2>Últimas 10 Lecturas de Sensores</h2>
+        <h2>Últimas 6 Lecturas de Sensores</h2>
         <Line data={chartData} className="min-w-96"/>
       </div>
     </Layout>
