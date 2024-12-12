@@ -9,7 +9,7 @@ export default function Dashboard() {
   useEffect(() => {
     // Llamar a la API para obtener datos
     const fetchData = async () => {
-      const response = await fetch("/api/datos");
+      const response = await fetch("/api/excel");
       const datos = (await response.json())["last6values"];
       console.log(datos);
       setDatos(datos);
@@ -19,7 +19,12 @@ export default function Dashboard() {
   }, []);
 
   // Extraer datos para gráficos
-  if (datos.length === 0) return <p className="inline-block bg-red-900 text-gray-100 text-3xl text-center align-middle pt-48 w-screen h-screen">Cargando datos...</p>;
+  if (datos.length === 0)
+    return (
+      <p className="inline-block bg-red-900 text-gray-100 text-3xl text-center align-middle pt-48 w-screen h-screen">
+        Cargando datos...
+      </p>
+    );
 
   // Preparar datos para Chart.js
   const fechas = datos.map((fila) => fila[4]); // Columna de fechas
@@ -56,7 +61,7 @@ export default function Dashboard() {
     <Layout>
       <div className="text-center mx-auto w-10/12">
         <h2>Últimas 6 Lecturas de Sensores</h2>
-        <Line data={chartData} className="min-w-96"/>
+        <Line data={chartData} className="min-w-96" />
       </div>
     </Layout>
   );
