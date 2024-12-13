@@ -62,12 +62,12 @@ export default function ControlBomba() {
 
   return (
     <Layout>
-      <div className="p-4 space-y-4 w-11/12 mx-auto">
-        <h1>Control de la Bomba</h1>
+      <div className="p-8 space-y-4 w-11/12 mx-auto text-center">
+        <h1 className="text-slate-100 bg-teal-800 px-4 py-2 rounded-md">Control de la Bomba</h1>
 
         <p>
           Estado de la bomba:{" "}
-          <span className={estado ? "bg-lime-700" : "bg-red-700"}>
+          <span className={(estado ? "font-bold text-lime-700" : "font-bold text-red-700")}>
             {" "}
             {estado ? "Activada" : "Desactivada"}{" "}
           </span>

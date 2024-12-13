@@ -31,33 +31,27 @@ export default function Control() {
   return (
     <Layout>
       <div className="w-10/12 h-5/6 grid grid-cols-2 grid-rows-[20%_40%_40%] gap-4 mx-auto py-8">
-        <div className="col-start-1 self-center max-h-24 text-lg">
+        <div className="col-start-1 self-center max-h-24 text-lg items-center">
           <h1 style={{ textAlign: "center" }}>Datos de la última lectura</h1>
         </div>
-        <button
-          className="col-start-2 row-start-1 self-center bg-pink-700 text-white p-2 rounded"
-          onClick={fetchData}
-        >
-          Actualizar Datos
-        </button>
         <div className="col-start-1 row-start-2 text-center">
-          <GaugeChart val={humedad} colors={["#713f12", "#1e293b"]} /> Humedad
+          <GaugeChart val={humedad} colors={["#713f12", "#C0BDCB"]} /> Humedad
           del suelo: {humedad}%
         </div>
-        <div className="col-start-2 row-start-2 text-center">
+        <div className="col-start-2 row-start-2 text-center self-center">
           {" "}
           Estado de la bomba:{" "}
-          <span className={estadoBomba ? "bg-lime-700" : "bg-red-700"}>
+          <span className={estadoBomba ? "font-bold text-lime-700" : "font-bold text-red-700"}>
             {" "}
             {estadoBomba ? "Activada" : "Desactivada"}{" "}
           </span>
         </div>
         <div className="col-start-1 row-start-3 text-center">
-          <GaugeChart val={lluvia} colors={["#65a30d", "#1e293b"]} />
+          <GaugeChart val={lluvia} colors={["#65a30d", "#C0BDCB"]} />
           Lluvia: {lluvia}%
         </div>
         <div className="col-start-2 row-start-3 text-center">
-          <GaugeChart val={nivelAgua} colors={["#0284c7", "#1e293b"]} />
+          <GaugeChart val={nivelAgua} colors={["#0284c7", "#C0BDCB"]} />
           Nivel de agua del tanque: {nivelAgua}%
         </div>
       </div>

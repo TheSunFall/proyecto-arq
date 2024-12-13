@@ -6,7 +6,7 @@ export default function Toggle({ estado, handler }) {
       <button
         onClick={handler}
         className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 
-          ${estado ? "bg-green-500" : "bg-gray-300"}`}
+          ${estado ? "bg-custom1" : "bg-custom2"}`}
       >
         <span
           className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform duration-300
